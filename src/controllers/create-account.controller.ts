@@ -21,12 +21,14 @@ export class CreateAccountController {
     @UsePipes(new ZodValidationPipe(createAccountBodySchema))
     async handle(@Body() body: CreateAccountBodySchema) {
         const { name, email, password} = body
-
+        
         const userWithSameEmail = await this.prisma.user.findUnique({
             where: {
                 email,
             }
         })
+
+        console.log('oi')
 
         if (userWithSameEmail) {
             throw new ConflictException(
