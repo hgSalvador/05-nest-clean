@@ -2,9 +2,10 @@ import { AppModule } from "@/app.module"
 import { PrismaService } from "@/prisma/prisma.service"
 import { INestApplication } from "@nestjs/common"
 import { Test } from "@nestjs/testing"
+import { Prisma } from "@prisma/client"
 import request from 'supertest'
 
-describe('Create account (E2E)', () => {
+describe('Create question (E2E)', () => {
     let app: INestApplication
     let prisma: PrismaService
     
@@ -20,21 +21,18 @@ describe('Create account (E2E)', () => {
         await app.init()
     })
 
-    test('[POST] /accounts', async () => {
-        const response = await request(app.getHttpServer()).post('/accounts').send({
+    test('[POST] /questions', async () => {
+        await prisma.user.create({
             name: 'John Doe',
             email: 'johndoe@example.com',
             password: '123456'
         })
-
-        expect(response.statusCode).toBe(201)
-
-        const userOnDatabase = await prisma.user.findUnique({
-            where: {
-                email: 'johndoe@example.com'
-            }
+        
+        const response = await request(app.getHttpServer()).post('/questions').send({
+            title:'New Question',
+            content: 'Question content'
         })
 
-        expect(userOnDatabase).toBeTruthy()
+        expect(response.statusCode).toBe(201)
     })
 })
