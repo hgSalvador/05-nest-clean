@@ -22,8 +22,6 @@ const schemaId = randomUUID()
 beforeAll(async () => {
     const databaseURL = generateUniqueDatabaseUrl(schemaId)
 
-    console.log(databaseURL)
-
     process.env.DATABASE_URL = databaseURL
     
     execSync('pnpm prisma migrate deploy')

@@ -53,8 +53,6 @@ describe('Create question (E2E)', () => {
             }
         })
 
-        console.log(questionOnDatabase)
-
         expect(questionOnDatabase).toBeTruthy()
     })
 })
