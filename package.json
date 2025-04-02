@@ -5,8 +5,6 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
-
-
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -22,6 +20,7 @@
     "test:e2e": "vitest run --config ./vitest.config.e2e.mts"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.6.0",
     "@nestjs/common": "^11.0.5",
     "@nestjs/config": "^4.0.0",
     "@nestjs/core": "^11.0.5",
@@ -30,6 +29,7 @@
     "@nestjs/platform-express": "^11.0.5",
     "@prisma/client": "^6.2.1",
     "bcryptjs": "^2.4.3",
+    "dayjs": "^1.11.13",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
