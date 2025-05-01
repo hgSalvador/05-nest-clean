@@ -37,10 +37,12 @@ describe('Upload and create attachment', () => {
 
   it('should not to be able to upload an attachment with invalid file type', async () => {
     const result = await sut.execute({
-      fileName: 'profile.png',
-      fileType: 'image/png',
+      fileName: 'profile.mp3',
+      fileType: 'audio/mp3',
       body: Buffer.from(' ')
     })
+
+    console.log(result.isLeft())
 
     expect(result.isLeft()).toBe(true)
     expect(result.value).toBeInstanceOf(InvalidAttachmentType)

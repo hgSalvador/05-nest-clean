@@ -6,7 +6,6 @@ export class InMemoryAttachmentsRepository implements AttachmentsRepository {
   public items: Attachment[] = []
 
   async create(attachment: Attachment) {
-    console.log(attachment)
     this.items.push(attachment)
   }
 }
