@@ -41,9 +41,7 @@ describe('Upload and create attachment', () => {
       fileType: 'audio/mp3',
       body: Buffer.from(' ')
     })
-
-    console.log(result.isLeft())
-
+    
     expect(result.isLeft()).toBe(true)
     expect(result.value).toBeInstanceOf(InvalidAttachmentType)
   })
