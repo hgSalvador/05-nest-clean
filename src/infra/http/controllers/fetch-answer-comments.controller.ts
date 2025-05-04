@@ -1,9 +1,9 @@
 import { BadRequestException, Controller, Get, Param, Query, UseGuards } from "@nestjs/common"
 import { JwtAuthGuard } from "@/auth/jwt-auth.guard"
 import { ZodValidationPipe } from "@/infra/http/pipes/zod-validation-pipe"
-import { CommentPresenter } from "../presenters/comment-presenter"
 import { z } from "zod"
 import { FetchAnswerCommentsUseCase } from "@/domain/forum/application/use-cases/fetch-answer-comments"
+import { CommentWithAuthorPresenter } from "../presenters/comment-with-author-presenter"
 
 const pageQueryParamSchema = z
     .string()
@@ -36,8 +36,8 @@ export class FetchAnswerCommentsController {
             throw new BadRequestException()
         }
 
-        const answerComments = result.value.answerComments
+        const answerComments = result.value.comments
 
-        return { comments: answerComments.map(CommentPresenter.toHTTP) }
+        return { comments: answerComments.map(CommentWithAuthorPresenter.toHTTP) }
     }      
 }
