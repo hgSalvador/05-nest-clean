@@ -5,6 +5,7 @@ import { AuthModule } from '../auth/auth.module'
 import { HttpModule } from './http/http.module'
 import { EnvService } from './env/env.service'
 import { EnvModule } from './env/env.module'
+import { EventsModule } from './events/event.module'
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -13,7 +14,8 @@ import { EnvModule } from './env/env.module'
     }),
     AuthModule,
     HttpModule,
-    EnvModule
+    EnvModule,
+    EventsModule
   ],
   providers: [EnvService]
 })

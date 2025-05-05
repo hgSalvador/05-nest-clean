@@ -49,7 +49,7 @@ describe('On Answer Created', () => {
 
     it('should send a notification when an answer is created', async () => {
         const question = makeQuestion()
-        const answer = makeAnswer({ questionId: question.id})
+        const answer = makeAnswer({ questionId: question.id })
 
         inMemoryQuestionsRepository.create(question)
         inMemoryAnswersRepository.create(answer)
