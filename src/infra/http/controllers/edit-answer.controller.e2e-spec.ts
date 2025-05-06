@@ -93,8 +93,7 @@ describe('Edit answer (E2E)', () => {
                 content: 'New answer content'
             }
         })
-        console.log(answerOnDatabase)
-
+        
         expect(answerOnDatabase).toBeTruthy()
 
         const attachmentsOnDatabase = await prisma.attachment.findMany({

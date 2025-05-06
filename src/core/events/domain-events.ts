@@ -9,6 +9,8 @@ export class DomainEvents {
 
   //Marca os agregados que tem eventos pendentes, para serem enviados aos agregados
   private static markedAggregates: AggregateRoot<any>[] = []
+
+  public static shouldRun = true
   
 
   public static markAggregateForDispatch(aggregate: AggregateRoot<any>) {
@@ -66,6 +68,11 @@ export class DomainEvents {
   private static dispatch(event: DomainEvent) {
     const eventClassName: string = event.constructor.name
     const isEventRegistered = eventClassName in this.handlersMap
+
+    if (!this.shouldRun) {
+      return
+    }
+
     if (isEventRegistered) {
       const handlers = this.handlersMap[eventClassName]
       for (const handler of handlers) {
